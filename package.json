@@ -1,0 +1,25 @@
+{
+  "name": "teamgenerator",
+  "version": "1.0.0",
+  "description": "Build your employee profile.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zachary-Maddox/TeamGenerator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zachary-Maddox/TeamGenerator/issues"
+  },
+  "homepage": "https://github.com/Zachary-Maddox/TeamGenerator#readme",
+  "dependencies": {
+    "jest": "^28.1.3"
+  }
+}
