@@ -1,10 +1,37 @@
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
+const Engineer =require("./lib/Engineer")
 
 const buildTeam = require("./src/buildTeam");
 const inquirer = require("inquirer");
 
 const employeeArray = [];
+
+const engineerQuestions = (employeeInfo) => {
+  inquirer
+      .prompt([
+          {
+              message: "What is your Engineer GITHUB username?",
+              type: "input",
+              name: "engineer",
+          },
+      ])
+      .then((answers) => {
+          const myEngineer = new Engineer(
+              employeeInfo.employeeName,
+              employeeInfo.employeeId,
+              employeeInfo.employeeEmail,
+              answers.engineer
+          );
+          employeeArray.push(myEngineer);
+          console.log(employeeArray);
+      })
+      .catch((error) => {
+          if (error.isTtyError) {
+          } else {
+          }
+      });
+};
 
 const managerQuestions = (employeeInfo) => {
     inquirer
@@ -88,6 +115,8 @@ const teamQuestions = () => {
                 internQuestions(answers);
             } else if (answers.employeeChoice === "Manager") {
                 managerQuestions(answers);
+            }else{
+              engineerQuestions(answers);
             }
         })
         .catch((error) => {
