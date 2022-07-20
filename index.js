@@ -1,6 +1,7 @@
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-const Engineer =require("./lib/Engineer")
+const Engineer = require("./lib/Engineer")
+const fs = require("fs")
 
 const buildTeam = require("./src/buildTeam");
 const inquirer = require("inquirer");
@@ -24,7 +25,7 @@ const engineerQuestions = (employeeInfo) => {
               answers.engineer
           );
           employeeArray.push(myEngineer);
-          console.log(employeeArray);
+          initialQuestion();
       })
       .catch((error) => {
           if (error.isTtyError) {
@@ -50,7 +51,7 @@ const managerQuestions = (employeeInfo) => {
                 answers.manager
             );
             employeeArray.push(myManager);
-            console.log(employeeArray);
+            initialQuestion();
         })
         .catch((error) => {
             if (error.isTtyError) {
@@ -76,7 +77,8 @@ const internQuestions = (employeeInfo) => {
                 answers.intern
             );
             employeeArray.push(myIntern);
-            console.log(employeeArray);
+            initialQuestion();
+            
         })
         .catch((error) => {
             if (error.isTtyError) {
@@ -139,8 +141,9 @@ const initialQuestion = () => {
             if (answers.continue) {
                 teamQuestions();
             } else {
-            }
-        })
+              const htmlTemplate = buildTeam(employeeArray);
+              fs.writeFileSync("./dist/index.html",htmlTemplate);
+        }})
         .catch((error) => {
             if (error.isTtyError) {
             } else {
